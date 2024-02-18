@@ -100,8 +100,7 @@ app.layout = html.Div([
             ),
             dmc.CardSection(
                 children=[
-                    html.Audio(id='audio-player', controls=True),
-                    html.Div(id="audio-output"),
+                    html.Audio(id='audio-player', controls=True, hidden=True),
                 ],
                 className='d-flex justify-content-center mb-1',
                 style={
@@ -123,7 +122,7 @@ app.layout = html.Div([
 
 
 @callback(Output('status-show', 'children', allow_duplicate=True),
-          Output('audio-output', 'children'),
+          Output('audio-player', 'src'),
           Input('save-toggle', 'n_clicks'),
           State('input', 'audio'),
           prevent_initial_call=True
@@ -137,7 +136,7 @@ def save_audio(n_clicks, audio):
             encoded_content = (base64.b64encode(f.read())).decode('ascii')
 
         audio_src = f"data:audio/wav;base64,{audio['base64']}"
-        return "saved audio", html.Audio(src=audio_src, controls=True)
+        return "saved audio", audio_src
     except Exception as e:
         print(e)
 
@@ -163,7 +162,8 @@ def get_voice(audio):
 
 @callback(Output('status-show', 'children'),
           Output('input', 'record'),
-          Output('audio-player', 'src'),
+          Output('audio-player', 'hidden'),
+          Output('audio-player', 'src', allow_duplicate=True),
           Output('on-off-toggle', 'n_clicks'),
           Output('mic-icon', 'style'),
           Output('mic-icon', 'className'),
@@ -180,7 +180,7 @@ def switch_recorder(n_clicks, audio):
     }
     if n_clicks == 1:
         mic_style['color'] = "#F83B19"
-        return 'Recording', True, None, 1, mic_style, "fa-solid fa-microphone"
+        return 'Recording', True, True, None, 1, mic_style, "fa-solid fa-microphone"
     elif n_clicks in [0, 2]:
         mic_style['color'] = "#FFFFFF"
         a_src = None
@@ -188,7 +188,7 @@ def switch_recorder(n_clicks, audio):
             a_src = audio['blobURL']
         else:
             a_src = dash.no_update
-        return 'Stop', False, a_src, 0, mic_style, "fa-solid fa-microphone"
+        return 'Stop', False, False, a_src, 0, mic_style, "fa-solid fa-microphone"
     else:
         raise PreventUpdate
 
