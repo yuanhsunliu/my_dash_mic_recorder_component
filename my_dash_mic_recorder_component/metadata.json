@@ -52,6 +52,13 @@
         },
         "required": false,
         "description": "The value displayed in the input."
+      },
+      "recorderParams": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "The value displayed in the input."
       }
     }
   }

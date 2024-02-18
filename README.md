@@ -1,15 +1,5 @@
 # my dash mic recorder component
 
-```
-download dash-component-boilerplate source code.
-open project with pycharm.
-create venv
-pip install cookiecutter
-cd ..
-cookiecutter dash-component-boilerplate
-use npm install what you need.
-```
-
 my dash mic recorder component is a Dash component library.
 
 wrapper react-mic project
@@ -20,6 +10,19 @@ Get started with:
 1. Install Dash and its dependencies: https://dash.plotly.com/installation
 2. Run `python usage.py`
 3. Visit http://localhost:8050 in your web browser
+
+## How to create custom dash-component project
+```
+download dash-component-boilerplate source code.
+open project with pycharm.
+create venv
+pip install cookiecutter
+cd ..
+cookiecutter dash-component-boilerplate
+use npm install what you need.
+```
+When ReactMic onStop is triggered, property audio will be fired with base64 format.
+In Dash callback function, we can get base64 string and convert as wave file.
 
 ## Contributing
 

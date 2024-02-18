@@ -11,7 +11,7 @@ ExampleComponent is an example component. It takes a property, `label`, and disp
 
 \usage{
 myauoMyDashMicRecorderComponent(id=NULL, audio=NULL, backgroundColor=NULL, record=NULL,
-strokeColor=NULL, value=NULL)
+recorderParams=NULL, strokeColor=NULL, value=NULL)
 }
 
 \arguments{
@@ -22,6 +22,8 @@ strokeColor=NULL, value=NULL)
 \item{backgroundColor}{Character. The value displayed in the input.}
 
 \item{record}{Logical. The value displayed in the input.}
+
+\item{recorderParams}{Named list. The value displayed in the input.}
 
 \item{strokeColor}{Character. The value displayed in the input.}
 

@@ -32,37 +32,28 @@ export default class MyDashMicRecorderComponent extends Component {
 
     onData(recordedBlob) {
         console.log('chunk of real-time data is: ', recordedBlob);
-//        this.props.setProps({audio: recordedBlob})
     }
 
     async onStop(recordedBlob) {
         console.log('recordedBlob is: ', recordedBlob);
+
         let local_props = this.props;
-
         let reader = new FileReader();
-
-        // 读取Blob对象
-        reader.readAsArrayBuffer(recordedBlob['blob']);
-
         // 当读取完成时，转换为Float32Array
-        reader.onload = function() {
+        reader.onloadend = function() {
           let buffer = reader.result;
-          var incomingData = new Uint8Array(buffer); // create a uint8 view on the ArrayBuffer
-          var i, l = incomingData.length; // length, we need this for the loop
-          var outputData = new Float32Array(incomingData.length); // create the Float32Array for output
-          for (i = 0; i < l; i++) {
-              outputData[i] = (incomingData[i] - 128) / 128.0; // convert audio to float
-          }
+          let base64 = buffer.split(',')[1];
 
           // 在这里可以使用float32Array进行其他操作
-          local_props.setProps({audio: outputData})
+          local_props.setProps({audio: {'base64': base64}})
         };
+        reader.readAsDataURL(recordedBlob['blob']);
 
         this.props.setProps({value: recordedBlob})
     }
 
     render() {
-        const {id, record, setProps, backgroundColor, strokeColor} = this.props;
+        const {id, record, setProps, backgroundColor, strokeColor, recorderParams} = this.props;
 
         return (
             <div id={id}>
@@ -71,11 +62,15 @@ export default class MyDashMicRecorderComponent extends Component {
                   className="sound-wave"
                   height={100}
                   width={640}
-                  mimeType='audio/mp3'
+                  mimeType='audio/wav'
+                  audioBitsPerSecond={128000}
+                  bufferSize={2048}
+                  sampleRate={44100}
                   onStop={this.onStop}
                   onData={this.onData}
                   strokeColor={strokeColor}
-                  backgroundColor={backgroundColor} />
+                  backgroundColor={backgroundColor}
+                  recorderParams={recorderParams} />
             </div>
         );
     }
@@ -119,4 +114,9 @@ MyDashMicRecorderComponent.propTypes = {
      * The value displayed in the input.
      */
     strokeColor: PropTypes.string,
+
+    /**
+     * The value displayed in the input.
+     */
+    recorderParams: PropTypes.object
 };

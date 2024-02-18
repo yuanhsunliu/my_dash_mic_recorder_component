@@ -1,3 +1,5 @@
+import base64
+
 import dash
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
@@ -7,8 +9,7 @@ import io
 import soundfile as sf
 
 import my_dash_mic_recorder_component
-from dash import Dash, callback, html, Input, Output
-
+from dash import Dash, callback, html, Input, Output, State
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.FONT_AWESOME])
 
@@ -45,7 +46,13 @@ app.layout = html.Div([
                     id='input',
                     record=False,
                     strokeColor='#096EB0',
-                    backgroundColor='#333333'
+                    backgroundColor='#333333',
+                    recorderParams={
+                        'echoCancellation': True,
+                        'autoGainControl': True,
+                        'noiseSuppression': True,
+                        'channelCount': 1
+                    }
                 ),
             ]),
             html.Div(
@@ -92,7 +99,10 @@ app.layout = html.Div([
                 }
             ),
             dmc.CardSection(
-                html.Audio(id='audio-player', controls=True),
+                children=[
+                    html.Audio(id='audio-player', controls=True),
+                    html.Div(id="audio-output"),
+                ],
                 className='d-flex justify-content-center mb-1',
                 style={
                     "position": "relative",
@@ -113,15 +123,41 @@ app.layout = html.Div([
 
 
 @callback(Output('status-show', 'children', allow_duplicate=True),
+          Output('audio-output', 'children'),
+          Input('save-toggle', 'n_clicks'),
+          State('input', 'audio'),
+          prevent_initial_call=True
+          )
+def save_audio(n_clicks, audio):
+    try:
+        with open('tests/my.wav', mode='wb+') as f:
+            f.write(base64.b64decode(audio['base64']))
+
+        with open('tests/my.wav', "rb") as f:
+            encoded_content = (base64.b64encode(f.read())).decode('ascii')
+
+        audio_src = f"data:audio/wav;base64,{audio['base64']}"
+        return "saved audio", html.Audio(src=audio_src, controls=True)
+    except Exception as e:
+        print(e)
+
+
+@callback(Output('status-show', 'children', allow_duplicate=True),
           Input('input', 'audio'),
           prevent_initial_call=True
           )
 def get_voice(audio):
-    audio_array = np.array(list(audio.values()))
-    try:
-        sf.write('tests/my.mp3', audio_array, 48000, format="MP3")
-    except Exception as e:
-        print(e)
+    # global audio_samples
+    # audio_samples = list(audio.values())
+    # audio_array = np.array(audio_samples)
+
+    # try:
+    #     # with sf.SoundFile('tests/my.wav', mode='w+', samplerate=16000, channels=1) as wfile:
+    #     #     wfile.seek(0, sf.SEEK_END)
+    #     #     wfile.write(audio_array)
+    #     # audio_array.astype(np.float32).tofile("tests/my.wav")
+    # except Exception as e:
+    #     print(e)
     return "receive audio"
 
 
@@ -136,7 +172,7 @@ def get_voice(audio):
           prevent_initial_call=True
           )
 def switch_recorder(n_clicks, audio):
-    print('switch_recorder', audio)
+    # print('switch_recorder', audio)
     mic_style = {
         "fontSize": '36px',
         "marginLeft": "3px",

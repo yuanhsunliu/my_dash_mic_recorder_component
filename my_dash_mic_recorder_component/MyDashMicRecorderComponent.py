@@ -25,6 +25,9 @@ Keyword arguments:
 - record (boolean; optional):
     The value displayed in the input.
 
+- recorderParams (dict; optional):
+    The value displayed in the input.
+
 - strokeColor (string; optional):
     The value displayed in the input.
 
@@ -35,10 +38,10 @@ Keyword arguments:
     _namespace = 'my_dash_mic_recorder_component'
     _type = 'MyDashMicRecorderComponent'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, value=Component.UNDEFINED, audio=Component.UNDEFINED, record=Component.UNDEFINED, backgroundColor=Component.UNDEFINED, strokeColor=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'audio', 'backgroundColor', 'record', 'strokeColor', 'value']
+    def __init__(self, id=Component.UNDEFINED, value=Component.UNDEFINED, audio=Component.UNDEFINED, record=Component.UNDEFINED, backgroundColor=Component.UNDEFINED, strokeColor=Component.UNDEFINED, recorderParams=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'audio', 'backgroundColor', 'record', 'recorderParams', 'strokeColor', 'value']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'audio', 'backgroundColor', 'record', 'strokeColor', 'value']
+        self.available_properties = ['id', 'audio', 'backgroundColor', 'record', 'recorderParams', 'strokeColor', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

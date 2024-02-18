@@ -16,11 +16,12 @@ Keyword arguments:
 - `audio` (Dict; optional): The value displayed in the input.
 - `backgroundColor` (String; optional): The value displayed in the input.
 - `record` (Bool; optional): The value displayed in the input.
+- `recorderParams` (Dict; optional): The value displayed in the input.
 - `strokeColor` (String; optional): The value displayed in the input.
 - `value` (Dict; optional): The value displayed in the input.
 """
 function myauo_mydashmicrecordercomponent(; kwargs...)
-        available_props = Symbol[:id, :audio, :backgroundColor, :record, :strokeColor, :value]
+        available_props = Symbol[:id, :audio, :backgroundColor, :record, :recorderParams, :strokeColor, :value]
         wild_props = Symbol[]
         return Component("myauo_mydashmicrecordercomponent", "MyDashMicRecorderComponent", "my_dash_mic_recorder_component", available_props, wild_props; kwargs...)
 end

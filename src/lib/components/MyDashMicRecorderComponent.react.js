@@ -55,6 +55,11 @@ MyDashMicRecorderComponent.propTypes = {
      * The value displayed in the input.
      */
     strokeColor: PropTypes.string,
+
+    /**
+     * The value displayed in the input.
+     */
+    recorderParams: PropTypes.object
 };
 
 export default MyDashMicRecorderComponent;
