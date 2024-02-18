@@ -1,13 +1,18 @@
 # my dash mic recorder component
 
 ```
-download dash-component-boilerplate
+download dash-component-boilerplate source code.
+open project with pycharm.
+create venv
 pip install cookiecutter
 cd ..
 cookiecutter dash-component-boilerplate
+use npm install what you need.
 ```
 
 my dash mic recorder component is a Dash component library.
+
+wrapper react-mic project
 
 my dash mic recorder
 
