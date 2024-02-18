@@ -1,0 +1,27 @@
+.myDashMicRecorderComponent_js_metadata <- function() {
+deps_metadata <- list(`my_dash_mic_recorder_component` = structure(list(name = "my_dash_mic_recorder_component",
+version = "0.0.1", src = list(href = NULL,
+file = "deps"), meta = NULL,
+script = 'async-MyDashMicRecorderComponent.js',
+stylesheet = NULL, head = NULL, attachment = NULL, package = "myDashMicRecorderComponent",
+all_files = FALSE, async = TRUE), class = "html_dependency"),
+`my_dash_mic_recorder_component` = structure(list(name = "my_dash_mic_recorder_component",
+version = "0.0.1", src = list(href = NULL,
+file = "deps"), meta = NULL,
+script = 'async-MyDashMicRecorderComponent.js.map',
+stylesheet = NULL, head = NULL, attachment = NULL, package = "myDashMicRecorderComponent",
+all_files = FALSE, dynamic = TRUE), class = "html_dependency"),
+`my_dash_mic_recorder_component` = structure(list(name = "my_dash_mic_recorder_component",
+version = "0.0.1", src = list(href = NULL,
+file = "deps"), meta = NULL,
+script = 'my_dash_mic_recorder_component.min.js',
+stylesheet = NULL, head = NULL, attachment = NULL, package = "myDashMicRecorderComponent",
+all_files = FALSE), class = "html_dependency"),
+`my_dash_mic_recorder_component` = structure(list(name = "my_dash_mic_recorder_component",
+version = "0.0.1", src = list(href = NULL,
+file = "deps"), meta = NULL,
+script = 'my_dash_mic_recorder_component.min.js.map',
+stylesheet = NULL, head = NULL, attachment = NULL, package = "myDashMicRecorderComponent",
+all_files = FALSE, dynamic = TRUE), class = "html_dependency"))
+return(deps_metadata)
+}

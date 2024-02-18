@@ -1,0 +1,1 @@
+export const MyDashMicRecorderComponent = React.lazy(() => import(/* webpackChunkName: "MyDashMicRecorderComponent" */ './fragments/MyDashMicRecorderComponent.react'));

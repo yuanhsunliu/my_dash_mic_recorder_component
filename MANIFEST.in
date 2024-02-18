@@ -1,0 +1,11 @@
+include my_dash_mic_recorder_component/my_dash_mic_recorder_component.min.js
+include my_dash_mic_recorder_component/my_dash_mic_recorder_component.min.js.map
+include my_dash_mic_recorder_component/async-*.js
+include my_dash_mic_recorder_component/async-*.js.map
+include my_dash_mic_recorder_component/*-shared.js
+include my_dash_mic_recorder_component/*-shared.js.map
+include my_dash_mic_recorder_component/metadata.json
+include my_dash_mic_recorder_component/package-info.json
+include README.md
+include LICENSE
+include package.json
